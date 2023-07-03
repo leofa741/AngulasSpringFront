@@ -1,0 +1,65 @@
+<div class="card bg-dark text-white">
+
+    <div class="card-header">
+
+        <h3 class="card-title">{{ title }}</h3>
+
+        <div class="card-body">
+
+            <form #clienteForm="ngForm">
+
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" id="nombre" placeholder="Nombre" required #nombre="ngModel">
+                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                        <div *ngIf="nombre.errors">
+                            Nombre es requerido.
+                        </div>    
+                    </div>              
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Apellido</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" id="apellido" placeholder="Apellido" required #apellido="ngModel">
+
+                    <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="alert alert-danger">
+                        <div *ngIf="apellido.errors">
+                            Apellido es requerido.
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email" id="email" placeholder="Email" required #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}">
+
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                        <div *ngIf="email.errors?.['required']">
+                            Email es requerido.
+                        </div>
+
+                        <div *ngIf="email.errors?.['pattern']">
+                            Email no es valido.
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit" *ngIf="!editMode" (click)="create()"
+                        [disabled]="clienteForm.invalid"
+                    >Guardar</button>                 
+                    <button class="btn btn-primary" type="submit" *ngIf="editMode" (click)="update()"
+                        [disabled]="clienteForm.invalid"
+                    >Editar</button>   
+                </div>
+            </form>
+
+        </div>
+    </div>
+    </div>

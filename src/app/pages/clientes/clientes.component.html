@@ -1,0 +1,46 @@
+
+
+<div class="card border-primary mb-6" >
+
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado</h5>
+
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-primary" [routerLink]="['/clientes/form']">Crear</button>
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control"  placeholder="Filtro">
+      </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Edad</th>
+          <th scope="col">fecha</th>
+          <th scope="col">Acciones</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.apellido}}</td>
+          <td>{{cliente.email}}</td>
+          <td>{{cliente.createAt}}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/clientes/form', cliente.id]">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="delete(cliente)">Eliminar</button>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+
+   
+  </div>
+</div>
+
